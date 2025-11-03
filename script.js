@@ -1,9 +1,10 @@
-const APP_SCRIPT_URL = https://script.google.com/macros/s/AKfycby2yi79iDIBxnQ8Zkg3RAkR21qO6oEKvBAgpan2qSM8vAKXL4I5OHwi0gfSZrJ2jHEt/exec;
+// URL de tu Apps Script publicado como Web App
+const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2yi79iDIBxnQ8Zkg3RAkR21qO6oEKvBAgpan2qSM8vAKXL4I5OHwi0gfSZrJ2jHEt/exec";
 
 let carrito = [];
 let total = 0;
 
-// Cargar menú desde Sheets
+// Cargar menú desde Google Sheets vía Apps Script
 fetch(APP_SCRIPT_URL)
   .then(res => res.json())
   .then(productos => mostrarMenu(productos))
@@ -25,7 +26,6 @@ function mostrarMenu(productos) {
     cont.appendChild(div);
   });
 }
-
 
 function agregar(nombre, precio) {
   carrito.push({nombre, precio});
@@ -51,6 +51,7 @@ function enviarPedido() {
     alert('Tu carrito está vacío');
     return;
   }
+
   const pedido = carrito.map(p => `${p.nombre} ($${p.precio})`).join(', ');
 
   fetch(APP_SCRIPT_URL, {
@@ -66,4 +67,3 @@ function enviarPedido() {
   })
   .catch(err => alert('Error al enviar el pedido'));
 }
-
