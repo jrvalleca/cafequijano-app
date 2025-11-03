@@ -1,18 +1,13 @@
-const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2yi79iDIBxnQ8Zkg3RAkR21qO6oEKvBAgpan2qSM8vAKXL4I5OHwi0gfSZrJ2jHEt/exec";
+const APP_SCRIPT_URL = https://script.google.com/macros/s/AKfycby2yi79iDIBxnQ8Zkg3RAkR21qO6oEKvBAgpan2qSM8vAKXL4I5OHwi0gfSZrJ2jHEt/exec;
 
 let carrito = [];
 let total = 0;
 
-// Menú de ejemplo
-const productos = [
-  { nombre: "Hamburguesa Clásica", descripcion: "Con queso y papas", precio: 80, imagen: "https://i.imgur.com/1ZQ1Q4N.jpg" },
-  { nombre: "Hot Dog Especial", descripcion: "Pan artesanal y salchicha gourmet", precio: 60, imagen: "https://i.imgur.com/7kH6g3h.jpg" },
-  { nombre: "Papas Fritas", descripcion: "Crujientes y doradas", precio: 30, imagen: "https://i.imgur.com/A6Vd9Dk.jpg" },
-  { nombre: "Refresco", descripcion: "Coca-Cola, Pepsi o Fanta", precio: 25, imagen: "https://i.imgur.com/XH8r5pB.jpg" }
-];
-
-// Mostrar menú
-mostrarMenu(productos);
+// Cargar menú desde Sheets
+fetch(APP_SCRIPT_URL)
+  .then(res => res.json())
+  .then(productos => mostrarMenu(productos))
+  .catch(err => document.getElementById('menu').innerHTML = 'Error al cargar el menú');
 
 function mostrarMenu(productos) {
   const cont = document.getElementById('menu');
@@ -30,6 +25,7 @@ function mostrarMenu(productos) {
     cont.appendChild(div);
   });
 }
+
 
 function agregar(nombre, precio) {
   carrito.push({nombre, precio});
@@ -70,3 +66,4 @@ function enviarPedido() {
   })
   .catch(err => alert('Error al enviar el pedido'));
 }
+
