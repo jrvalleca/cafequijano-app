@@ -1,5 +1,5 @@
 // URL de tu Apps Script publicado como Web App
-const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2yi79iDIBxnQ8Zkg3RAkR21qO6oEKvBAgpan2qSM8vAKXL4I5OHwi0gfSZrJ2jHEt/exec";
+const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzG9gxrJrV9XAwjXMgE9yWi_iWAceGP0R9iu9q5YezhYL4CyJyk1iB0N-j8Oqkz07Fu/exec";
 
 let carrito = [];
 let total = 0;
@@ -67,3 +67,4 @@ function enviarPedido() {
   })
   .catch(err => alert('Error al enviar el pedido'));
 }
+
